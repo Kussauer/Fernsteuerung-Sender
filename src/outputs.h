@@ -15,6 +15,7 @@ void checkTaster1()
         taster1.toggleButtonStatus();
         taster1.buttonSerialAusgabe();
         monitorTransmitter.clear();
+        monitorTransmitter.println("-- Smart Car --");
         monitorTransmitter.println(taster1.buttonName);
         if (taster1.getButtonStatus() == 1)
         {
@@ -35,6 +36,7 @@ void checkTaster2()
         taster2.toggleButtonStatus();
         taster2.buttonSerialAusgabe();
         monitorTransmitter.clear();
+        monitorTransmitter.println("-- Smart Car --");
         monitorTransmitter.println(taster2.buttonName);
         if (taster2.getButtonStatus() == 1)
         {
@@ -55,6 +57,7 @@ void checkTaster3()
         taster3.toggleButtonStatus();
         taster3.buttonSerialAusgabe();
         monitorTransmitter.clear();
+        monitorTransmitter.println("-- Smart Car --");
         monitorTransmitter.println(taster3.buttonName);
         if (taster3.getButtonStatus() == 1)
         {
@@ -75,6 +78,7 @@ void checkTaster4()
         taster4.toggleButtonStatus();
         taster4.buttonSerialAusgabe();
         monitorTransmitter.clear();
+        monitorTransmitter.println("-- Smart Car --");
         monitorTransmitter.println(taster4.buttonName);
         if (taster4.getButtonStatus() == 1)
         {
@@ -95,6 +99,7 @@ void checkTaster5()
         taster5.toggleButtonStatus();
         taster5.buttonSerialAusgabe();
         monitorTransmitter.clear();
+        monitorTransmitter.println("-- Smart Car --");
         monitorTransmitter.println(taster5.buttonName);
         if (taster5.getButtonStatus() == 1)
         {
