@@ -7,12 +7,12 @@ int statusLEDButton1 = LOW;
 
 // === Joystick ===
 
-int sensorWert1 = 0;
-int sensorWert2 = 0;
 
 // === MILLIS ===
 unsigned long previousMillisButtons = 0;
 const long intervallButtons = 50;
+unsigned long previousMillisJoystick = 0;
+const long intervallJoystick = 4000; // !!!!! noch anpassen !!!!!
 
 void setup()
 {
@@ -39,16 +39,19 @@ void loop()
     previousMillisButtons = currentMillis;
   }
 
-  sensorWert1 = analogRead(A3);
-  sensorWert2 = analogRead(A2);
+  if ((currentMillis - previousMillisJoystick) >= intervallJoystick)
+  {
+    joystickLeftX.joystickSerialAusgabe();
+    joystickLeftY.joystickSerialAusgabe();
+    
+    monitorTransmitter.clear();
+    monitorTransmitter.println("--- Smart Car ---");
+    monitorTransmitter.println(getDirection(joystickLeftX.mapJoystick(), joystickLeftY.mapJoystick()));
+    previousMillisJoystick = currentMillis;
+  }
 
-  Serial.print("Wert 1 = ");
-  Serial.println(sensorWert1);
-
-  Serial.print("Wert 2 = ");
-  Serial.println(sensorWert2);
-  Serial.println("---------------");
-
+  
+/* 
   sensorWert1 = map(sensorWert1, 0, 4064, 0, 100);
   sensorWert2 = map(sensorWert2, 0, 4064, 0, 100);
 
@@ -59,5 +62,5 @@ void loop()
   Serial.println(sensorWert2);
   Serial.println("===============");
 
-  delay(3000);
+  delay(3000); */
 }
