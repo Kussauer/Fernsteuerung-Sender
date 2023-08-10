@@ -1,5 +1,6 @@
 #include "button.h"
 #include "oledDisplay.h"
+#include "joystick.h"
 
 // === Initialisierung der Taster (PIN / Nummer / Name)
 button taster1(8, 1, "Taster 1");
@@ -7,6 +8,10 @@ button taster2(9, 2, "Taster 2");
 button taster3(10, 3, "Taster 3");
 button taster4(11, 4, "Taster 4");
 button taster5(12, 5, "Taster 5");
+
+// === Initialisierung der Joysticks (PIN / Name)
+joystick joystickLeftX(A3, "LinksX");
+joystick joystickLeftY(A2, "LinksY");
 
 void checkTaster1()
 {
@@ -121,4 +126,61 @@ void checkTasterAll()
   checkTaster4();
   checkTaster5();
 
+}
+
+String getDirection(int xAxis, int yAxis)
+{
+    /*
+    0-RW//Li-25-langsamRW//langsamLi-45
+    Stopp
+    55-langsamVW//langsamRe-75-VW//Re-100
+    */
+
+    int x = xAxis;
+    int y = yAxis;
+
+    if ((x >= 45 && x <= 55) && (y >= 45 && y <= 55))
+    {
+        return "Stop";
+    }
+
+    if ((x >= 45 && x <= 55) && (y >= 56 && y <= 75))
+    {
+        return "SlowFW";
+    }
+
+    if ((x >= 45 && x <= 55) && (y >= 76 && y <= 100))
+    {
+        return "Forward";
+    }
+
+    if ((x >= 45 && x <= 55) && (y >= 25 && y <= 44))
+    {
+        return "SlowBW";
+    }
+
+    if ((x >= 45 && x <= 55) && (y >= 0 && y <= 24))
+    {
+        return "Backwards";
+    }
+
+    if ((x >= 25 && x <= 44) && (y >= 45 && y <= 55))
+    {
+        return "SlowLeft";
+    }
+
+    if ((x >= 0 && x <= 24) && (y >= 45 && y <= 55))
+    {
+        return "Left";
+    }
+
+    if ((x >= 56 && x <= 75) && (y >= 45 && y <= 55))
+    {
+        return "SlowRight";
+    }
+
+    if ((x >= 76 && x <= 100) && (y >= 45 && y <= 55))
+    {
+        return "Right";
+    }
 }

@@ -3,40 +3,32 @@
 
 #include <Arduino.h>
 
+class button
+{
 
+private:
+    int pinButton;
+    bool buttonStatus = 0;
+    int buttonRead = 0;
 
-class button {
+    unsigned long previousMillis = 0;
 
-    private:
-        int pinButton;
-        bool buttonStatus = 0;
-        int buttonRead = 0;
+public:
+    int buttonNumber;
+    String buttonName;
+    button(int pin, int btnNr, String btnname);
 
-        unsigned long previousMillis = 0;
+    int readButton();
 
+    void setButtonStatusActive();
+    void setButtonStatusInactive();
+    bool getButtonStatus();
+    void toggleButtonStatus();
 
-    public:
-        int buttonNumber;
-        String buttonName;
-        button(int pin, int btnNr, String btnname);
+    void buttonSerialAusgabe();
 
-        int readButton();
-
-        void setButtonStatusActive();
-        void setButtonStatusInactive();
-        bool getButtonStatus();
-        void toggleButtonStatus();
-
-        void buttonSerialAusgabe();
-
-        void setButtonNumber(int number);
-        int getButtonNumber();
-
-
-
-
+    void setButtonNumber(int number);
+    int getButtonNumber();
 };
-
-
 
 #endif
