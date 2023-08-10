@@ -50,17 +50,4 @@ void loop()
     previousMillisJoystick = currentMillis;
   }
 
-  
-/* 
-  sensorWert1 = map(sensorWert1, 0, 4064, 0, 100);
-  sensorWert2 = map(sensorWert2, 0, 4064, 0, 100);
-
-  Serial.print("Mapping-Wert 1 = ");
-  Serial.println(sensorWert1);
-
-  Serial.print("Mapping-Wert 2 = ");
-  Serial.println(sensorWert2);
-  Serial.println("===============");
-
-  delay(3000); */
 }
