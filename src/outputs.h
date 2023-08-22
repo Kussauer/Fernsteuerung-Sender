@@ -3,11 +3,11 @@
 #include "joystick.h"
 
 // === Initialisierung der Taster (PIN / Nummer / Name)
-button taster1(8, 1, "Taster 1");
-button taster2(9, 2, "Taster 2");
-button taster3(10, 3, "Taster 3");
-button taster4(11, 4, "Taster 4");
-button taster5(12, 5, "Taster 5");
+button taster1(2, 1, "Taster 1");
+button taster2(3, 2, "Taster 2");
+button taster3(4, 3, "Taster 3");
+button taster4(5, 4, "Taster 4");
+button taster5(6, 5, "Taster 5");
 
 // === Initialisierung der Joysticks (PIN / Name)
 joystick joystickLeftX(A3, "LinksX");
@@ -118,14 +118,13 @@ void checkTaster5()
     }
 }
 
-void checkTasterAll() 
+void checkTasterAll()
 {
-  checkTaster1();
-  checkTaster2();
-  checkTaster3();
-  checkTaster4();
-  checkTaster5();
-
+    checkTaster1();
+    checkTaster2();
+    checkTaster3();
+    checkTaster4();
+    checkTaster5();
 }
 
 String getDirection(int xAxis, int yAxis)
@@ -183,4 +182,27 @@ String getDirection(int xAxis, int yAxis)
     {
         return "Right";
     }
+}
+
+//  ====== Transmitter ===
+
+String readButtonStatusAsJSON()
+{
+    int status1 = taster1.getButtonStatus();
+    int status2 = taster2.getButtonStatus();
+    int status3 = taster3.getButtonStatus();
+    int status4 = taster4.getButtonStatus();
+    int status5 = taster5.getButtonStatus();
+
+    String result = "{";
+    result = result + "b1:" + String(status1, 2) + ","; // Status Taster 1
+    result = result + "b2:" + String(status1, 2) + ","; // Status Taster 2
+    result = result + "b3:" + String(status1, 2) + ","; // Status Taster 3
+    result = result + "b4:" + String(status1, 2) + ","; // Status Taster 4
+    result = result + "b5:" + String(status2, 2);       // Status Taster 5
+    result = result + "}";
+
+    Serial.println(result);
+
+    return result;
 }
